@@ -47,12 +47,16 @@
 					<!-- 데이터가 있을 때 -->
 					<tr align="center" valign="middle" onmouseover="this.style.background='#bbdefb'" onmouseout="this.style.background=''" height="23px">
 						<td>${board.boardnum }</td>
-						<td>${board.boardtitle }</td>
+						<td>
+							<a href="${pageContext.request.contextPath}/board/BoardView.bo?boardnum=${board.boardnum}">
+								${board.boardtitle }
+							</a>
+						</td>
 						<td>${board.username }</td>
 						<td>${board.boarddate }</td>
 						<td>${board.boardreadcount }</td>
 					</tr>
-				</c:forEach>	
+				</c:forEach>
 			</c:when>
 			<c:otherwise>
 				<!-- 데이터가 없을 때 -->
@@ -71,6 +75,7 @@
 				<c:if test="${nowPage > 1 }">
 					<a href="${pageContext.request.contextPath}/board/BoardList.bo?page=${nowPage - 1}">[&lt;]</a>
 				</c:if>
+				
 				<c:forEach var="i" begin="${startPage }" end="${endPage }">
 					<c:choose>
 						<c:when test="${i == nowPage }">
@@ -82,6 +87,7 @@
 						</c:otherwise>
 					</c:choose>
 				</c:forEach>
+				
 				<%-- [<] --%>
 				<c:if test="${nowPage < totalPage }">
 					<a href="${pageContext.request.contextPath}/board/BoardList.bo?page=${nowPage + 1}">[&gt;]</a>

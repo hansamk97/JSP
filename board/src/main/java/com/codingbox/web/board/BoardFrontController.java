@@ -32,7 +32,7 @@ public class BoardFrontController extends HttpServlet{
 		
 		switch ( requestURI ) {
 		case "/board/boardwrite.bo":
-			forward = new ActionForward(true, "/board/boardwrite.jsp");
+			forward = new ActionForward(true, "/board/boardwrite.jsp");	// 화면 이동만
 			break;
 		case "/board/BoardWriteOK.bo":
 			forward = new BoardWriteOkAction().execute(request, response);
@@ -44,6 +44,25 @@ public class BoardFrontController extends HttpServlet{
 			// dao : 조회, getBoardList()
 			// xml : 쿼리, getBoardList
 			forward = new BoardListAction().execute(request, response);
+			break;
+		case "/board/BoardView.bo":
+//			forward = new ActionForward(true, "/board/boardview.jsp");
+			// BoardViewAction.java
+			// dao , getDetail
+			// xml , getDetail
+			forward = new BoardViewAction().execute(request, response);
+			break;
+		case "/board/AddReply.bo":
+			forward = new AddReplyAction().execute(request, response);
+			// 게시글 등록
+			// dao, addReply
+			// xml, addReply
+			break;
+		case "/board/UpdateReply.bo":
+			forward = new UpdateReplyAction().execute(request, response);
+			break;
+		case "/board/DeleteReply.bo":
+			forward = new DeleteReplyAction().execute(request, response);
 			break;
 		}
 		
